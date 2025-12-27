@@ -1,0 +1,22 @@
+Girdi: Başlangıç değeri (x)
+
+Başla
+    x değerini al
+    x değerini ekrana yazdır
+
+    x ≠ 1 olduğu sürece:
+        Eğer x çift ise:
+            x = x / 2
+        Değilse:
+            x = 3*x + 1
+
+        Oluşan x değerini diziye ekle
+        x değerini ekrana yazdır
+    Döngü sonu
+
+Çıktı:
+    Collatz sayı dizisi
+    Toplam adım sayısı
+    Çift ve tek sayıların sayısı
+    Maksimum ulaşılan değer
+Bitir
