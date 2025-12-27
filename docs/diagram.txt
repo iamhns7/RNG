@@ -1,0 +1,19 @@
+ Başla
+        |
+   x değerini al
+        |
+   x ekrana yaz
+        |
+    x çift mi?
+     /       \
+   Evet     Hayır
+    |          |
+ x = x/2   x = 3x+1
+      \      /
+       x == 1 ?
+           |
+        Hayır → Döngü
+           |
+          Evet
+           |
+          Bitir
