@@ -19,6 +19,7 @@ public class CollatzRNG {
         ArrayList<Long> dizi = new ArrayList<>();
 
         System.out.println("\nUretilen sayi dizisi:");
+        System.out.println(x);
 
         while (x != 1) {
             if (x % 2 == 0) {
