@@ -1,0 +1,13 @@
+Bu çalışmada Collatz tabanlı sözde rastgele sayı üreteci analiz edilmiştir.
+
+Algoritma, kullanıcı tarafından girilen başlangıç değeri (seed) ile
+deterministik bir sayı dizisi üretmektedir.
+
+Yapılan istatistiksel analiz sonucunda:
+- Üretilen sayıların çift ve tek dağılımının dengeli olmadığı görülmüştür.
+- Aynı başlangıç değeri her çalıştırmada aynı sonuçları üretmektedir.
+- Sayı dizisinde belirli örüntüler (pattern) bulunmaktadır.
+- Rastgelelik görünümü olmasına rağmen gerçek anlamda rastgelelik sağlanamamaktadır.
+
+Bu sonuçlar, algoritmanın kriptografik rastgelelik testlerini
+geçemediğini göstermektedir.
