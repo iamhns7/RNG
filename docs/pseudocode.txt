@@ -1,22 +1,56 @@
+COLLATZ ANAHTAR ÜRETİCİ - PSEUDOCODE
+=====================================
+
 Girdi: Başlangıç değeri (x)
 
 Başla
     x değerini al
+    dizi = []
+    stringBuilder = ""
+    ciftSayisi = 0, tekSayisi = 0
+    maksimumDeger = x
+    baslangicDegeri = x
+    
+    stringBuilder += x
     x değerini ekrana yazdır
 
     x ≠ 1 olduğu sürece:
         Eğer x çift ise:
             x = x / 2
+            ciftSayisi++
         Değilse:
             x = 3*x + 1
+            tekSayisi++
 
-        Oluşan x değerini diziye ekle
+        Eğer x > maksimumDeger ise:
+            maksimumDeger = x
+
+        diziye x'i ekle
+        stringBuilder += x
         x değerini ekrana yazdır
     Döngü sonu
+
+    # İstatistiksel analiz
+    toplamAdim = dizi.uzunluk
+    
+    # Anahtar üretimi
+    bytes = stringBuilder.toUTF8Bytes()
+    hexString = ""
+    
+    FOR i = 0 TO 31:  # 32 byte = 256 bit
+        Eğer i < bytes.length:
+            hex = bytes[i].toHexadecimal()
+            hexString += hex
+        Değilse:
+            hexString += "00"  # Padding
+    DÖNGÜ SONU
+    
+    anahtar = hexString.toUpperCase()
 
 Çıktı:
     Collatz sayı dizisi
     Toplam adım sayısı
     Çift ve tek sayıların sayısı
     Maksimum ulaşılan değer
+    256-bit Hexadecimal Anahtar
 Bitir

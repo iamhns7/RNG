@@ -1,8 +1,13 @@
- Başla
+COLLATZ ANAHTAR ÜRETİMİ AKIŞ DİYAGRAMI
+=========================================
+
+     Başla
         |
    x değerini al
         |
-   x ekrana yaz
+   dizi = [], string = ""
+        |
+   string += x
         |
     x çift mi?
      /       \
@@ -10,10 +15,21 @@
     |          |
  x = x/2   x = 3x+1
       \      /
-       x == 1 ?
-           |
-        Hayır → Döngü
-           |
-          Evet
-           |
-          Bitir
+    diziye ekle
+    string += x
+        |
+     x == 1 ?
+        |
+     Hayır → Döngü
+        |
+      Evet
+        |
+  UTF-8 byte dizisine çevir
+        |
+  Her byte → hex karakter
+        |
+  256-bit için padding (00)
+        |
+  Anahtarı göster
+        |
+      Bitir

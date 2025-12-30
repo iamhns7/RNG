@@ -1,13 +1,73 @@
-Bu çalışmada Collatz tabanlı sözde rastgele sayı üreteci analiz edilmiştir.
+COLLATZ TABANLI ANAHTAR ÜRETECİ - İSTATİSTİKSEL ANALİZ
+======================================================
+
+Bu çalışmada Collatz algoritması kullanılarak ASCII hex tabanlı
+anahtar üreteci geliştirilmiş ve analiz edilmiştir.
+
+## Algoritmanın Özellikleri
 
 Algoritma, kullanıcı tarafından girilen başlangıç değeri (seed) ile
-deterministik bir sayı dizisi üretmektedir.
+deterministik bir anahtar üretmektedir.
 
-Yapılan istatistiksel analiz sonucunda:
-- Üretilen sayıların çift ve tek dağılımının dengeli olmadığı görülmüştür.
-- Aynı başlangıç değeri her çalıştırmada aynı sonuçları üretmektedir.
-- Sayı dizisinde belirli örüntüler (pattern) bulunmaktadır.
-- Rastgelelik görünümü olmasına rağmen gerçek anlamda rastgelelik sağlanamamaktadır.
+## İstatistiksel Bulgular
 
-Bu sonuçlar, algoritmanın kriptografik rastgelelik testlerini
-geçemediğini göstermektedir.
+### Collatz Dizisi:
+- Üretilen sayıların çift ve tek dağılımı dengeli değildir
+- Çift sayılar genellikle tek sayılardan fazla çıkmaktadır
+- Aynı başlangıç değeri her çalıştırmada aynı diziyi üretir
+- Sayı dizisinde belirli örüntüler (pattern) bulunmaktadır
+
+### Anahtar Üretimi:
+- Direkt ASCII/UTF-8 encoding kullanılmaktadır
+- Hash fonksiyonu kullanılmamaktadır
+- 256-bit uzunluk için sıfırlarla padding yapılmaktadır
+- Aynı başlangıç değeri her zaman aynı anahtarı üretir (deterministik)
+
+## Güvenlik Değerlendirmesi
+
+### Tespit Edilen Zayıflıklar:
+
+1. **Brute-Force Saldırısına Açık**: 
+   - Başlangıç değeri 1-100,000 arasında ise saniyeler içinde kırılabilir
+   - Her seed değeri için anahtar üretip karşılaştırma yapılabilir
+
+2. **Ters Mühendislik Kolay**:
+   - Hex değerler direkt ASCII karşılıklarıdır
+   - Padding paternleri bellidir (00 00 00...)
+   - Collatz dizisi tahmin edilebilir
+
+3. **Entropi Eksikliği**:
+   - Salt (tuz) mekanizması yok
+   - Zaman damgası kullanılmıyor
+   - Ek rastgelelik kaynağı yok
+
+4. **Tek İşlem**:
+   - İterasyon/tekrarlama yok
+   - Hesaplama maliyeti çok düşük
+   - Kırma süresi minimal
+
+## Örnek Analiz (Başlangıç = 20)
+
+Collatz Dizisi: 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+String: "20105168421"
+ASCII Bytes: [50, 48, 49, 48, 53, 49, 54, 56, 52, 50, 49]
+Hex: 32 30 31 30 35 31 36 38 34 32 31
+Anahtar: 3230313035313638343231000000000000000000000000000000000000000000
+
+Adım sayısı: 7
+Çift sayılar: 6
+Tek sayılar: 1
+Maksimum değer: 20
+
+## Sonuç
+
+Bu sistem **eğitim amaçlıdır** ve aşağıdaki nedenlerle
+gerçek kriptografik uygulamalarda kullanılmamalıdır:
+
+- Kriptografik rastgelelik testlerini geçemez
+- CSPRNG (Cryptographically Secure PRNG) değildir
+- Brute-force saldırılarına karşı savunmasızdır
+- Güvenli anahtar üretimi için uygun değildir
+
+Gerçek uygulamalarda PBKDF2, bcrypt, Argon2 veya
+donanım tabanlı TRNG (True Random Number Generator) kullanılmalıdır.
